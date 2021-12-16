@@ -3,6 +3,8 @@ package com.Runner;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
@@ -27,76 +29,38 @@ public class Automation_Practice extends Baseclass {
 
 	public static Page_Object_Manager pom = new Page_Object_Manager(c);
 
+	public static Logger log = Logger.getLogger(Automation_Practice.class);
+
 	public static void main(String[] args) throws Throwable {
+
+		PropertyConfigurator.configure("log4j.properties");
 		url("http://automationpractice.com/index.php");
-
-
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstancehp().getShirts());
-
-		JavascriptExecutor js = (JavascriptExecutor)c;
-		js.executeScript("window.scrollBy(0,300);","");
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+		scroll("index", "window.scrollBy(0,300);", null);
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstanceaddcart().getAddcart());
-
-
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstancecheckout1().getCheckout1());
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-
-
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstancesum().getSummary());
-
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-
-
-		inputvalue(pom.getInstancesign().getMail(), "sansmech30@gmail.com");
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-		inputvalue(pom.getInstancesign().getPass(), "manisans@007");
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+		implicitlyWait(30, TimeUnit.SECONDS);
+		String username = Data_From_Excel("C:\\Users\\santhosh\\eclipse-workspace\\Mini_Project\\Test-Case Automation-Practice.xlsx", 6, 5);
+		inputvalue(pom.getInstancesign().getMail(), username);
+		implicitlyWait(30, TimeUnit.SECONDS);
+		String password = Data_From_Excel("C:\\Users\\santhosh\\eclipse-workspace\\Mini_Project\\Test-Case Automation-Practice.xlsx", 7, 5);
+		inputvalue(pom.getInstancesign().getPass(), password);
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstancesign().getSign());
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-
-
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstanceout().getOut());
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
-
-
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstancesh().getAgree());
-
-		c.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-
+		implicitlyWait(30, TimeUnit.SECONDS);
 		clickonElement(pom.getInstancesh().getCheckbox());
-
-		js.executeScript("window.scrollBy(0,300);","");
-		
+		scroll("index", "window.scrollBy(0,300);", null);
 		takesnap("C:\\Users\\santhosh\\eclipse-workspace\\Mini_Project\\snapshots\\img.png");
-
 	}
-
-
 }		
 
 
